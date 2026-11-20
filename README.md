@@ -1,16 +1,23 @@
 # EasyEfx 🎛️
 
-**EasyEfx** es un plugin multiefectos en formatos **VST3** y **Standalone (.exe)** desarrollado en C++20 con el framework JUCE 8. Diseñado para procesar voces, leads, sintetizadores o pistas completas con una matriz de 21 efectos conmutables, controles macro automatizables y paneles de configuración avanzada inspirados en hardware y plugins de estudio (como Fruity Reeverb 2 y Fruity Delay 3).
+**EasyEfx** es un plugin multiefectos profesional en formato **VST3** (y Standalone) desarrollado en C++20 con el framework JUCE 8. Diseñado para procesar voces, leads, sintetizadores o pistas completas con una matriz de 21 efectos de estudio conmutables, controles macro automatizables y paneles de configuración avanzada inspirados en hardware y plugins clásicos (como Fruity Reeverb 2 y Fruity Delay 3).
 
 ---
 
-## 🚀 Descarga Directa del Ejecutable (.exe)
+## 🚀 Descarga e Instalación del Plugin VST3
 
-Puedes descargar directamente la versión Standalone (lista para usar sin necesidad de DAW) desde el repositorio:
+El instalador oficial para Windows se encarga de instalar automáticamente el plugin VST3 en la carpeta de plugins de tu sistema (`C:\Program Files\Common Files\VST3\`), listo para ser reconocido por FL Studio, Ableton Live, Cubase, Reaper, Studio One, etc.:
 
-👉 **[Descargar EasyEfx.exe (Versión Standalone)](https://github.com/MiguelC21/EasyEfx/raw/main/dist/EasyEfx.exe)**
+👉 **[Descargar EasyEfx_Installer.exe (Instalador Oficial)](https://github.com/MiguelC21/EasyEfx/raw/main/dist/EasyEfx_Installer.exe)**
 
-*(También puedes encontrar el archivo directamente en la carpeta [`dist/EasyEfx.exe`](dist/EasyEfx.exe) de este repositorio).*
+*(También puedes encontrar el archivo ejecutable del instalador en la carpeta [`dist/EasyEfx_Installer.exe`](dist/EasyEfx_Installer.exe) de este repositorio).*
+
+### ¿Cómo instalarlo?
+1. Descarga y ejecuta **`EasyEfx_Installer.exe`**.
+2. Sigue los pasos del asistente de instalación. Puedes elegir instalar:
+   - **Plugin VST3 (64-bit):** Instalación automática en `C:\Program Files\Common Files\VST3\EasyEfx.vst3`.
+   - **Aplicación Standalone:** Para usar el multiefectos directamente con tu interfaz de audio sin abrir ningún DAW.
+3. Abre tu DAW favorito, realiza un re-escaneo de plugins y agrega **EasyEfx** a tu cadena de efectos.
 
 ---
 
@@ -21,11 +28,11 @@ Puedes descargar directamente la versión Standalone (lista para usar sin necesi
   - Perillas principales (**Macro 1** y **Macro 2**) totalmente automatizables desde cualquier DAW compatible con VST3.
   - Botón de ajustes `⚙` que abre un inspector de hardware detallado con controles secundarios avanzados.
 - **Respuesta en Tiempo Real a 0 ms:**
-  - Control de parámetros atómico sin latencia perceptible al mover perillas o automatizar.
+  - Control de parámetros atómico sin latencia ni retraso al mover perillas o automatizar.
 - **Compatibilidad:**
   - Windows 10 / 11 (64-bit).
-  - Standalone (.exe independiente con configuración de interfaz ASIO / WASAPI / DirectSound).
-  - VST3 (FL Studio, Ableton Live, Cubase, Studio One, Reaper, etc.).
+  - VST3 (FL Studio, Ableton Live, Cubase, Studio One, Reaper, Bitwig, etc.).
+  - Standalone (.exe independiente con soporte ASIO / WASAPI / DirectSound).
 
 ---
 
@@ -57,30 +64,13 @@ Puedes descargar directamente la versión Standalone (lista para usar sin necesi
 
 ---
 
-## 📦 Instalación
-
-### 1. Standalone (.exe)
-Simplemente descarga [`EasyEfx.exe`](dist/EasyEfx.exe) y ejecútalo. Puedes configurar tu dispositivo de audio (ASIO / Windows Audio) desde el menú superior de audio.
-
-### 2. VST3 (DAW)
-Para usar EasyEfx dentro de tu DAW:
-1. Copia la carpeta o archivo `EasyEfx.vst3` a la ruta estándar de VST3 en Windows:
-   ```text
-   C:\Program Files\Common Files\VST3\
-   ```
-2. Realiza un re-escaneo de plugins en tu DAW (FL Studio, Ableton, Reaper, etc.).
-3. Inserta `EasyEfx` en cualquier canal del mixer.
-
----
-
 ## 🛠️ Compilación desde el Código Fuente
-
-Si deseas compilar el proyecto manualmente:
 
 ### Requisitos:
 - **CMake** 3.22 o superior
 - **Compilador C++20** (Visual Studio 2022 con MSVC v143 o posterior)
-- **JUCE 8** (incluido o clonado en la raíz del repositorio)
+- **JUCE 8** (incluido en la raíz del proyecto)
+- **Inno Setup 6** (para generar el instalador ejecutable)
 
 ### Pasos:
 ```bash
@@ -93,14 +83,13 @@ cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
 
 # 3. Compilar VST3 y Standalone
 cmake --build build --config Release --parallel
-```
 
-Los binarios generados se encontrarán en:
-- Standalone: `build/EasyEfx_artefacts/Release/Standalone/EasyEfx.exe`
-- VST3: `build/EasyEfx_artefacts/Release/VST3/EasyEfx.vst3`
+# 4. Generar el instalador .exe
+iscc installer/EasyEfx_Setup.iss
+```
 
 ---
 
 ## 📄 Licencia
 
-Desarrollado como proyecto personal de procesamiento de audio en tiempo real.
+Desarrollado como proyecto de procesamiento de audio en tiempo real.
