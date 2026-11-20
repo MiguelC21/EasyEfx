@@ -1,0 +1,11 @@
+# Build directories and artifacts
+build/
+.vs/
+out/
+
+# JUCE framework dependency
+JUCE/
+
+# Temporary and cache files
+*.tmp
+*.log
